@@ -15,11 +15,12 @@ public class UserController {
     return List.of(
         new User(
                 1L,
-                "Terence@aol.com",
+                 "Terence@aol.com",
             "test123"
         )
         );
 
-        }
     }
+}
+
 
