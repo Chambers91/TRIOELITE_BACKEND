@@ -1,12 +1,23 @@
 package com.trioelite.Backend.Users;
 
-import java.time.LocalDate;
+import lombok.Getter;
 
+import java.time.LocalDate;
+import java.util.Date;
+
+@Getter
 public class User {
 
     private Long id;
+    //getters and setters
+    @Getter
     private String email;
+    @Getter
     private String password;
+//    private String firstName;
+//    private String lastName;
+//    private Date dob;
+//
 
 //constructor
     public User(Long id, String email, String password) {
@@ -15,17 +26,8 @@ public class User {
         this.password = password;
     }
 
-    //getters and setters
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
