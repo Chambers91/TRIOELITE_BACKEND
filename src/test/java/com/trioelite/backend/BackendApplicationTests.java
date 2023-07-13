@@ -1,4 +1,4 @@
-package com.trioelite.Backend;
+package com.trioelite.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

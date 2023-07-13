@@ -1,9 +1,6 @@
-package com.trioelite.Backend.Users;
+package com.trioelite.backend.user;
 
 import lombok.Getter;
-
-import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 public class User {
