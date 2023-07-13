@@ -8,8 +8,8 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
-@Table(name = "users")
-public class Users {
+@Table(name = "user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Users {
     @Column(name = "password")
     private String password;
 
-    public Users(String firstName,String lastName,String email,String password) {
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
