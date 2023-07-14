@@ -3,6 +3,7 @@ package com.trioelite.backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
 @Getter
 @Setter
@@ -26,6 +27,8 @@ public class User {
     @NonNull
     @Column(name = "password")
     private String password;
+
+    public User (){}
 
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -74,5 +77,14 @@ public class User {
         this.password = password;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
