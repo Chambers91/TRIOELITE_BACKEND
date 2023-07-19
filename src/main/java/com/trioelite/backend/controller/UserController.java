@@ -2,6 +2,7 @@ package com.trioelite.backend.controller;
 
 import com.trioelite.backend.entity.User;
 import com.trioelite.backend.repository.UserRepository;
+import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,15 +22,13 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User show(@PathVariable String id){
-        int userId = Integer.parseInt(id);
-        return userRepository.findOne(userId);
+    public User getUser(){
+        return null;
     }
 
     @PostMapping("/user/search")
     public List<User> search(@RequestBody Map<String, String> body){
-        String searchTerm = body.get("text");
-        return userRepository.findByTitleContainingOrContentContaining(searchTerm, searchTerm);
+        return null;
     }
 
     @PostMapping("/user")
@@ -39,7 +38,7 @@ public class UserController {
         return userRepository.save(new User());
     }
 
-    @PutMapping("/blog/{id}")
+    @PutMapping("/user/{id}")
     public User update(@PathVariable String id, @RequestBody Map<String, String> body){
         int blogId = Integer.parseInt(id);
         // getting blog
@@ -52,7 +51,6 @@ public class UserController {
     @DeleteMapping("user/{id}")
     public boolean delete(@PathVariable String id){
         int userId = Integer.parseInt(id);
-        userRepository.delete(userId);
         return true;
     }
 
