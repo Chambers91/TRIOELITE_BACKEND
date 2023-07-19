@@ -2,10 +2,15 @@ package com.trioelite.backend.controller;
 
 import com.trioelite.backend.entity.User;
 import com.trioelite.backend.repository.UserRepository;
+import com.trioelite.backend.service.UserService;
 import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.rmi.ServerException;
 import java.util.List;
 import java.util.Map;
 
@@ -16,26 +21,35 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    //returns all the users in the system
     @GetMapping("/user")
     public List<User> index(){
         return userRepository.findAll();
     }
 
-    @GetMapping("/user/{id}")
-    public User getUser(){
+    // returns a user by specified ID
+    @GetMapping(value = "/users/{id}")
+    public User getUser(@PathVariable("id") String id){
         return null;
     }
 
-    @PostMapping("/user/search")
-    public List<User> search(@RequestBody Map<String, String> body){
-        return null;
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public User createUser(User user) {
+        return user;
     }
 
-    @PostMapping("/user")
-    public User create(@RequestBody Map<String, String> body){
-        String title = body.get("title");
-        String content = body.get("content");
-        return userRepository.save(new User());
+    //creates a new user in the system
+    @PostMapping(path = "user",
+    consumes = MediaType.APPLICATION_JSON_VALUE,
+    produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> create(@RequestBody User newUser) {
+
+        User user = UserService.save(newUser);
+        if (user == null) {
+            throw new ServerException();
+        } else {
+            return new ResponseEntity<>(user, HttpStatus.CREATED);
+        }
     }
 
     @PutMapping("/user/{id}")
