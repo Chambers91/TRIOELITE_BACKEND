@@ -2,17 +2,9 @@ package com.trioelite.backend.controller;
 
 import com.trioelite.backend.entity.User;
 import com.trioelite.backend.repository.UserRepository;
-import com.trioelite.backend.service.UserService;
-import jakarta.persistence.Id;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.rmi.ServerException;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class UserController {
@@ -22,7 +14,7 @@ public class UserController {
     UserRepository userRepository;
 
     //returns all the users in the system
-    @GetMapping("/user")
+    @GetMapping("/getUser")
     public List<User> index(){
         return userRepository.findAll();
     }
@@ -33,16 +25,22 @@ public class UserController {
         return null;
     }
 
+    @PostMapping("/addUser")
+
+    @PutMapping("/updateUser")
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public User createUser(User user) {
         return user;
     }
 
-    @DeleteMapping("user/{id}")
+    @DeleteMapping("deleteUser/{id}")
     public boolean delete(@PathVariable String id){
         int userId = Integer.parseInt(id);
         return true;
     }
+
+
 
 }
 
