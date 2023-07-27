@@ -38,30 +38,6 @@ public class UserController {
         return user;
     }
 
-    //creates a new user in the system
-    @PostMapping(path = "user",
-    consumes = MediaType.APPLICATION_JSON_VALUE,
-    produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> create(@RequestBody User newUser) {
-
-        User user = UserService.save(newUser);
-        if (user == null) {
-            throw new ServerException();
-        } else {
-            return new ResponseEntity<>(user, HttpStatus.CREATED);
-        }
-    }
-
-    @PutMapping("/user/{id}")
-    public User update(@PathVariable String id, @RequestBody Map<String, String> body){
-        int blogId = Integer.parseInt(id);
-        // getting blog
-        User user = userRepository.findOne(userId);
-        user.setFirstName(body.get("firstName"));
-        user.setLastName(body.get("lastName"));
-        return userRepository.save(user);
-    }
-
     @DeleteMapping("user/{id}")
     public boolean delete(@PathVariable String id){
         int userId = Integer.parseInt(id);
