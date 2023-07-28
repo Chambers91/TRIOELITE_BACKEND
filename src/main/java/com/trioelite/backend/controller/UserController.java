@@ -1,46 +1,26 @@
 package com.trioelite.backend.controller;
 
-import com.trioelite.backend.entity.User;
-import com.trioelite.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.trioelite.backend.user.User;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
+import java.util.List;
+@CrossOrigin
 @RestController
+@RequestMapping(method = RequestMethod.GET, path = "/users")
 public class UserController {
 
-    //This will allow you to use userRepository anywhere in your controller without having to repeatedly instantiate it.
-    @Autowired
-    UserRepository userRepository;
+    @GetMapping("/")
+    public List<User> getUsers(){
+    return List.of(
+        new User(
+                1L,
+                 "Terence@aol.com",
+            "test123"
+        )
+        );
 
-    //returns all the users in the system
-    @GetMapping("/getUser")
-    public List<User> index(){
-        return userRepository.findAll();
+
     }
-
-    // returns a user by specified ID
-    @GetMapping(value = "/users/{id}")
-    public User getUser(@PathVariable("id") String id){
-        return null;
-    }
-
-    @PostMapping("/addUser")
-
-    @PutMapping("/updateUser")
-
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public User createUser(User user) {
-        return user;
-    }
-
-    @DeleteMapping("deleteUser/{id}")
-    public boolean delete(@PathVariable String id){
-        int userId = Integer.parseInt(id);
-        return true;
-    }
-
-
-
 }
+
 
